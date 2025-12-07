@@ -49,10 +49,38 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-speak("Helo, This is Ripan Deb Nath. How can I help you?") 
+speak("Helo, This is Ripan Deb Nath. How can I help you?")
 
 
-# engine = pyttsx3.init("sapi5") 
-# engine.setProperty('rate', 170)
-# voices = engine.getProperty("voices")
-# engine.setProperty('voice', voices[0].id)
+# Recognizing user spech to Text:
+
+def takeCommand():
+    """This function can take command from users & can recognize
+
+    Returns:
+        text as query
+    """
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listeninh.....")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+
+        # Exception Hendeling
+        try:
+            print("Recognizing......")
+            query = r.recognize_google(audio, language = 'en-in')
+            print(f"user said: {query}\n")                               
+
+        except Exception as e:
+            logging. info(e)
+            print(" Please Speak Again....")
+            return "None"
+        
+        return query
+    
+query = takeCommand()
+print(query)
+
+
