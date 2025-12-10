@@ -49,7 +49,7 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-speak("Helo, This is Ripan Deb Nath. How can I help you?")
+#speak("Helo, This is Ripan Deb Nath. How can I help you?")
 
 
 # Recognizing user spech to Text:
@@ -80,7 +80,43 @@ def takeCommand():
         
         return query
     
-query = takeCommand()
-print(query)
+# Create Greetings:
+
+def greeting():
+    hour = (datetime.datetime.now().hour)
+
+    if hour>=0 and hour<12:
+        speak("Good Morning Sir. How are you? Zeni is here to assist you. Please tell How can I help you?")
+    elif hour>=12 and hour<18:
+        speak("Good Afternoon Sir. How are you? Zeni is here to assist you. Please tell How can I help you?")
+    else:
+        speak("Good Evening Sir. How are you? Zeni is here to assist you. Please tell How can I help you?")  
+
+greeting()    
 
 
+#Continue Conversation Using Loops:
+
+while True:
+    query = takeCommand().lower()
+    print(query)
+    speak(query)
+
+    if "your name" in query:
+        speak("my name is Zeni")
+        logging.info("User asked for name ")
+    elif "how are you" in query:
+        speak("I am fine, tell me what can I do for you?")
+    elif "introduce" in query:
+        speak("i am a Python-based voice assistant system that can interact with the users through speech recognition and i can help in some activity as i have been trained.")
+    elif "time" in query:
+        strtime = datetime.datetime.now().strftime("%H:%M:%S:")
+        speak(f"The Curent time is {strtime}")
+    elif "exit" in query:
+        speak("Thank you Sir, Have a good time. I allways ready to help you.")
+        logging.info("User exided the program")
+        exit()
+    else:
+        speak("Sorry I Don't have any idea about it")
+        logging.info("User asked for uslearned command")
+    
