@@ -100,22 +100,87 @@ greeting()
 while True:
     query = takeCommand().lower()
     print(query)
-    speak(query)
+    # speak(query)
 
     if "your name" in query:
         speak("my name is Zeni")
         logging.info("User asked for name ")
+
     elif "how are you" in query:
         speak("I am fine, tell me what can I do for you?")
+
     elif "introduce" in query:
         speak("i am a Python-based voice assistant system that can interact with the users through speech recognition and i can help in some activity as i have been trained.")
+        logging.info("User asked for introduction")
+
     elif "time" in query:
         strtime = datetime.datetime.now().strftime("%H:%M:%S:")
         speak(f"The Curent time is {strtime}")
+        logging.info("User asked for time")
+
+    elif "open google" in query:
+        speak("ok sir. please type here what do you want to read")
+        webbrowser.open("google.com")
+        logging.info("User requested to open Google.")   
+
+    elif "open youtube" in query:
+        speak("ok sir. please type here what do you want to watch")
+        webbrowser.open("youtube.com")
+        logging.info("User requested to open YouTube.")
+
+    elif "open github" in query:
+        speak("ok sir. opening github")
+        webbrowser.open("github.com")
+        logging.info("User requested to open GitHub.")
+
+    elif "open github" in query:
+        speak("Opening GitHub")
+        webbrowser.open("github.com")
+        logging.info("User requested to open GitHub")
+
+    elif "open facebook" in query:
+        speak("Opening Facebook")
+        webbrowser.open("facebook.com")
+        logging.info("User requested to open Facebook")
+
+    elif "open calander" in query:
+        speak("Opening Calander")
+        webbrowser.open("https://calender.google.com")
+        logging.info("User requested to open Calander")
+
+    elif "open gmail" in query:
+        speak("Opening Gmail")
+        webbrowser.open("gmail.com")
+        logging.info("User requested to open Gmail")
+
+    elif"open notepad" in query:
+        speak("Opening Notepad")
+        os.startfile("C:\\Windows\\System32\\notepad.exe")
+        logging.info("User requested to open Notepad")
+
+    elif"wikipedia" in query:
+        speak("Searching Wikipedia...")
+        query = query.replace("wikipedia", "")
+        results = wikipedia.summary(query, sentences=2)
+        speak("According to Wikipedia")
+        print(results)
+        speak(results)
+        logging.info("User searched information from Wikipedia")
+
+    elif "play music" in query:
+        music_dir = "E:\Backup 2020\Video"
+        songs = os.listdir(music_dir)
+        print(songs)
+        random_song = random.choice(songs)
+        os.startfile(os.path.join(music_dir, random_song))
+        speak("Playing Music")
+        logging.info("User requested to play music")
+
     elif "exit" in query:
         speak("Thank you Sir, Have a good time. I allways ready to help you.")
         logging.info("User exided the program")
         exit()
+
     else:
         speak("Sorry I Don't have any idea about it")
         logging.info("User asked for uslearned command")
