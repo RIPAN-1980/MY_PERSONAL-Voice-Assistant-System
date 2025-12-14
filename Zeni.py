@@ -113,50 +113,77 @@ while True:
         speak("i am a Python-based voice assistant system that can interact with the users through speech recognition and i can help in some activity as i have been trained.")
         logging.info("User asked for introduction")
 
+# Asking for time:
+
     elif "time" in query:
         strtime = datetime.datetime.now().strftime("%H:%M:%S:")
         speak(f"The Curent time is {strtime}")
         logging.info("User asked for time")
+
+# Open Google:
 
     elif "open google" in query:
         speak("ok sir. please type here what do you want to read")
         webbrowser.open("google.com")
         logging.info("User requested to open Google.")   
 
+# Open Youtube:
+
     elif "open youtube" in query:
         speak("ok sir. please type here what do you want to watch")
         webbrowser.open("youtube.com")
         logging.info("User requested to open YouTube.")
+
+# Open Github:
 
     elif "open github" in query:
         speak("ok sir. opening github")
         webbrowser.open("github.com")
         logging.info("User requested to open GitHub.")
 
-    elif "open github" in query:
-        speak("Opening GitHub")
-        webbrowser.open("github.com")
-        logging.info("User requested to open GitHub")
+# Open facebook:
 
     elif "open facebook" in query:
         speak("Opening Facebook")
         webbrowser.open("facebook.com")
         logging.info("User requested to open Facebook")
 
+# Open Calander:
+
     elif "open calander" in query:
         speak("Opening Calander")
         webbrowser.open("https://calender.google.com")
         logging.info("User requested to open Calander")
+
+# Open Gmail:
 
     elif "open gmail" in query:
         speak("Opening Gmail")
         webbrowser.open("gmail.com")
         logging.info("User requested to open Gmail")
 
+# Open Calculator:
+
+    elif"open calculator" in query:
+        speak("Opening Calculator")
+        subprocess.Popen("calc.exe")
+        logging.info("User requested to open Calculator")
+
+# Open Notepad:
+
     elif"open notepad" in query:
         speak("Opening Notepad")
-        os.startfile("C:\\Windows\\System32\\notepad.exe")
+        subprocess.Popen("notepad.exe")
         logging.info("User requested to open Notepad")
+
+# Open Command Prompt:
+
+    elif"open command prompt" in query:
+        speak("Opening Command Prompt")
+        subprocess.Popen("cmd.exe")
+        logging.info("User requested to open Command Prompt")
+
+# Wikipedia Search:
 
     elif"wikipedia" in query:
         speak("Searching Wikipedia...")
@@ -167,6 +194,8 @@ while True:
         speak(results)
         logging.info("User searched information from Wikipedia")
 
+# Play Music:
+
     elif "play music" in query:
         music_dir = "E:\Backup 2020\Video"
         songs = os.listdir(music_dir)
@@ -175,6 +204,8 @@ while True:
         os.startfile(os.path.join(music_dir, random_song))
         speak("Playing Music")
         logging.info("User requested to play music")
+
+# Exit Command:
 
     elif "exit" in query:
         speak("Thank you Sir, Have a good time. I allways ready to help you.")
