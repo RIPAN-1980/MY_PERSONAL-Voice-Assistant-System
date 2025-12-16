@@ -8,6 +8,8 @@ import wikipedia
 import webbrowser
 import random
 import subprocess
+import google.generativeai as genai
+
 
 
 # Logging configuration 
@@ -95,6 +97,17 @@ def greeting():
 greeting()    
 
 
+def gemini_model_response(user_input):
+    GEMIMI_API_KEY = "AIzaSyCkYYqV8KMzbC8Rnw2ygR6qkLV6Nmf7j-8"
+    genai.configure(api_key= GEMIMI_API_KEY)
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    prompt = f"Answer the provided question in short, Question: {user_input}"
+    response = model.generate_content(prompt)
+    result =  response.text
+
+    return result
+
+
 #Continue Conversation Using Loops:
 
 while True:
@@ -148,12 +161,12 @@ while True:
         webbrowser.open("facebook.com")
         logging.info("User requested to open Facebook")
 
-# Open Calander:
+# Open Calendar:
 
-    elif "open calander" in query:
-        speak("Opening Calander")
-        webbrowser.open("https://calender.google.com")
-        logging.info("User requested to open Calander")
+    elif "open calendar" in query or "calendar" in query:
+        speak("Opening Windows Calendar")
+        webbrowser.open("https://calendar.google.com")
+        logging.info("User requested to open Calendar.")
 
 # Open Gmail:
 
@@ -213,6 +226,19 @@ while True:
         exit()
 
     else:
-        speak("Sorry I Don't have any idea about it")
-        logging.info("User asked for uslearned command")
+        response = gemini_model_response(query)
+        speak(response)
+        logging.info("User asked for ai based question")
+
+
+## Activateing Gemini API Model:
+
+# GEMIMI_API_KEY = "AIzaSyCkYYqV8KMzbC8Rnw2ygR6qkLV6Nmf7j-8"
     
+# genai.configure(api_key= Gemini_API_KEY)
+
+# model = genai.GenerativeModel("gemini-2.5-flash")
+
+# user_input = "What is python?"
+# response = model.generate_content(user_input)
+# print(response)
